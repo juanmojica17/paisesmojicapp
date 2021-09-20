@@ -1,0 +1,19 @@
+.cardtwo{
+    font-size: 30px;
+margin-top: 20%;
+text-align: center;
+margin-left: 30%;
+width: 40%;
+height: auto;
+margin-top: 80px;
+align-items: center;
+justify-content: center;
+justify-items: center;
+justify-self: center;
+}
+.cardtwo h6{
+    display:inline-flex;
+    margin:10px;
+    margin-left: 40px;
+    margin-right: 40px;
+}

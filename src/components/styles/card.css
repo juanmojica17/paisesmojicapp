@@ -1,0 +1,19 @@
+.card{
+    display: inline-block;
+    width:19%;
+    height:8%;
+    padding: 2%;
+    background-color: grey;
+}
+.card h2{
+
+justify-content: center;
+text-align: center;
+}
+.flag{
+    border:solid black;
+    object-fit: cover;
+    width: 80%;
+    height: 100%;
+}
+
