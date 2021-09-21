@@ -4,10 +4,12 @@ import Card from "../components/card"
 import "../components/styles/countries.css"
 import Header from "../components/header"
 import Notfound from "../components/notfound";
+import { Link, useHistory } from "react-router-dom";
 
 
 
 const Countries =()=>{
+    const history=useHistory();
     const[countrydata,setCountrydata]=useState([])
     const[countryname,setCountryname]=useState(null)
     const[error,setError]=useState(false)
@@ -22,6 +24,7 @@ const Countries =()=>{
             setError(true)
         }else{
             setCountrydata(result)
+            history.push(`/country/${result[0].name}`)
         }
         console.log(error)
         try{
@@ -39,9 +42,12 @@ const Countries =()=>{
     return(
         <>
         <Header 
+        
         setCountrydata={setCountrydata}
         setCountryname={setCountryname}
         handleSearchCountry={handleSearchCountry}/>
+    
+        
         { error ? (<Notfound />
         ):(
         <div className="countries">
@@ -51,6 +57,7 @@ const Countries =()=>{
                 flag={data.flag}
                 key={data.id}
                 />
+                
             ))}
             
         </div>)}

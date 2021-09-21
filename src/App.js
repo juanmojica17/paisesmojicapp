@@ -19,7 +19,7 @@ function App() {
         <Route path="/" exact>
         <Countries/>
         </Route>
-        <Route path="/Country" exact>
+        <Route path="/Country/:name" exact>
         <Country/>
         </Route>
         <Route path="/Seemore/:name" exact>

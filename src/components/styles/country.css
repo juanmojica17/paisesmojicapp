@@ -1,8 +1,10 @@
 body{
+    top:0%;
     background-color: gray;
 }
 
 .country{
+    padding-bottom: 2%;
     align-items: center;
     text-align: center;
     justify-content: center;
@@ -11,10 +13,13 @@ body{
 }
 
 .boton{
+    font-family: monospace;
+    font-weight: 10px;
+    border-radius: 30px;
     color: #000;
-    margin-left: 45%;
+    margin-left: 35%;
     margin-top: 20px;
-    width:150px;
+    width:30%;
     height: 60px;
 }
 
@@ -24,3 +29,16 @@ body{
     border-radius: 5px;
     color: black;
 }
+.boton2{
+    font-family: monospace;
+    font-weight: 10px;
+    border-radius: 30px;
+    color: #000;
+    
+    margin-top: 20px;
+    width:30%;
+    height: 60px;
+}  
+
+
+    

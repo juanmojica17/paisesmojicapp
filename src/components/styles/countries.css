@@ -1,8 +1,29 @@
 .countries{
-    margin-top: 0.5%;
+    margin-top:5%;
     padding: 5%;
     background-color:grey;
     justify-content: center;
     align-items: center;
     padding-left: 10%;
 }
+
+.botonsearch{
+    width: 200px;
+    height: 100px;
+}
+@media (max-width: 960px){
+  .countries{
+        margin-top: 20%;
+    }
+    }
+    @media (max-width: 675px){
+        .countries{
+              margin-top: 27%;
+          }
+          }
+
+          @media (max-width: 410px){
+            .countries{
+                margin-top: 45%;
+            } 
+          }

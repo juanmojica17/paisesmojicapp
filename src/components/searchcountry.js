@@ -12,7 +12,7 @@ const Searchcountry =({setCountryname, handleSearchCountry})=>{
             onChange={(e)=>setCountryname(e.target.value)} />
             <input className="input2" type="submit" value="search"/>
         </form>
-        
+       
     )
 }
 

@@ -11,9 +11,9 @@ const Cardtwo =({name, flag, population, capital, region})=>{
             <div >
             <img className="flag" src={flag}/>
             </div>
-            <h6>Population:<br></br>{population}</h6>
-            <h6>Capital City:<br></br>{capital}</h6>
-            <h6>Region:<br></br>{region}</h6>
+            <h6>Population:<br></br>{population}</h6><br></br>
+            <h6>Capital City:{capital}</h6><br></br>
+            <h6>Region:{region}</h6>
 
         </div>
         

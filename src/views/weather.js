@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../components/header';
 import "../components/styles/weather.css"
 import Cardfour from "../components/cardfour"
-import { Link } from 'react-router-dom';
+import { Link,useParams } from 'react-router-dom';
 
 
 const api = {
@@ -11,22 +11,22 @@ const api = {
 }
 
 function Weather() {
-
+  const{name}=useParams()
     const[countrydata,setCountrydata]=useState([])
     const[countryname,setCountryname]=useState(null)
     const[error,setError]=useState(false)
     const [query, setQuery] = useState('');
     const [weather, setWeather] = useState({});
 
-    const handleSearchCountry = async e =>{
-        const url= `https://restcountries.eu/rest/v2/name/${countryname}?fullText=true`
-        e.preventDefault();
+    const handleSearchCountry = async ()=>{
+        const url= `https://restcountries.eu/rest/v2/name/${name}?fullText=true`
+       
   
         const response = await fetch(url)
         const result = await response.json();
 
-        const urltwo = `${api.base}weather?q=${countryname}&units=metric&APPID=${api.key}`
-       e.preventDefault();
+        const urltwo = `${api.base}weather?q=${name}&units=metric&APPID=${api.key}`
+       
       
        const responsetwo = await fetch(urltwo)
        const resulttwo = await responsetwo.json();     
@@ -49,7 +49,9 @@ function Weather() {
         console.log(countrydata)
     }
   
-    
+    useEffect(()=>{
+      handleSearchCountry();
+  },[])
 
  
     
@@ -64,11 +66,7 @@ function Weather() {
   return (
 
       <div className={(typeof weather.main != "undefined") ? ((weather.clouds.all > 14 ) ? 'app warm' : 'app') : 'app'}>
-        <Header 
-        setCountrydata={setCountrydata}
-        setCountryname={setCountryname}
-        handleSearchCountry={handleSearchCountry}
-        />
+       
           <main>
           
         
@@ -80,7 +78,7 @@ function Weather() {
               <div>
                 <div className="location-box">
                   <div className="location">
-                  {countryname}
+                  {name}
                       
                   </div>
 
@@ -105,7 +103,8 @@ function Weather() {
 
                
                   <div className="weather">{weather.weather[0].main}</div>
-                    
+                  <Link to={`/Seemore/${countrydata.name}`}><button className="boton2" >RETURN</button></Link>
+                  <Link to="/"><button className="boton2">HOME</button></Link>
                 </div>
 
               </div>

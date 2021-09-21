@@ -8,7 +8,7 @@ const Header =({setCountryname, handleSearchCountry})=>{
     return(
         
         <header className="header">
-        <a className="logo" href="#"> <h2>WORLD COUNTRIES</h2><h6>MOJICAPP</h6> </a>
+         <div className="logo"><h2>WORLD COUNTRIES</h2><h6>MOJICAPP</h6> </div>
         <Searchcountry 
         setCountryname={setCountryname}
         handleSearchCountry={handleSearchCountry}
