@@ -18,12 +18,12 @@
     }
     @media (max-width: 675px){
         .countries{
-              margin-top: 27%;
+              margin-top: 30%;
           }
           }
 
           @media (max-width: 410px){
             .countries{
-                margin-top: 45%;
+                margin-top: 50%;
             } 
           }
