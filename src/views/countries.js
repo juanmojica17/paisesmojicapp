@@ -14,8 +14,8 @@ const Countries =()=>{
     const[countryname,setCountryname]=useState(null)
     const[error,setError]=useState(false)
     const handleSearchCountry = async e =>{
-        const url= `https://restcountries.eu/rest/v2/name/${countryname}`
-        e.preventDefault();
+        const url= `https://restcountries.com/v2/name/${countryname}`
+       e.preventDefault()
 
         const response = await fetch(url)
         const result = await response.json();
@@ -26,18 +26,20 @@ const Countries =()=>{
             setCountrydata(result)
             history.push(`/country/${result[0].name}`)
         }
-        console.log(error)
+        //console.log(countrydata)
         try{
 
         }catch (error){
-            console.log(error)
+            //console.log(error)
         }
         
         
         console.log(result)
     }
 
-    const {data} = useFetchData("https://restcountries.eu/rest/v2/all")
+   
+
+    const {data} = useFetchData("https://restcountries.com/v2/all")
     console.log({data})
     return(
         <>
@@ -54,7 +56,7 @@ const Countries =()=>{
             {data.map(data=>(
                 <Card
                 name={data.name}
-                flag={data.flag}
+                flag={data.flags[0]}
                 key={data.id}
                 />
                 

@@ -6,7 +6,7 @@ import "../components/styles/country.css"
 import Notfound from "../components/notfound";
 import { Link, useHistory } from 'react-router-dom';
 import { useParams } from "react-router-dom";
-
+import Loading from "../components/loading"
 const Country =()=>{
     const{name}=useParams()
     
@@ -14,10 +14,12 @@ const Country =()=>{
     const[countrydata,setCountrydata]=useState([])
     const[countryname,setCountryname]=useState(null)
     const[error,setError]=useState(false)
+    const[flag,setFlag]=useState("")
+    const[loading,setLoading]=useState(true)
     const handleSearchCountry = async () =>{
-        const url= `https://restcountries.eu/rest/v2/name/${name}`
+        const url= `https://restcountries.com/v2/name/${name}`
         
-        console.log(error)
+        //console.log(error)
         const response = await fetch(url)
         const result = await response.json();
         
@@ -27,9 +29,9 @@ const Country =()=>{
         }else{
             setError(false)
             setCountrydata(result[0])
-            
+            setFlag(result[0].flags[0])
         }
-        console.log(error)
+        //console.log(error)
         try{
 
         }catch (error){
@@ -37,12 +39,25 @@ const Country =()=>{
         }
         
         
-        console.log(countrydata)
+       // console.log(countrydata)
     }
+    
+    const loadingstatus=()=>{
+            setTimeout(()=>{
+                setLoading(false);
+            }, 350);
+        }
+    
     useEffect(()=>{
         handleSearchCountry();
+        loadingstatus();
     },[])
-    
+    console.log(flag)
+    if(loading){
+        return(
+            <Loading/>
+        )
+    }else{
     return(
         <>
         <div className="country">
@@ -55,7 +70,7 @@ const Country =()=>{
                 <div className="presentation">
             <Cardtwo
         name={countrydata.name}
-        flag={countrydata.flag}
+        flag={flag}
         /></div>
         
         <Link to={`/Seemore/${countrydata.name}`}><button className="boton" >SEE MORE</button></Link>
@@ -70,5 +85,5 @@ const Country =()=>{
         
     )
 }
-
+}
 export default Country

@@ -5,13 +5,16 @@ import Cardtree from "../components/cardtree"
 import "../components/styles/country.css"
 import { useParams } from "react-router-dom";
 import { Link } from 'react-router-dom';
+import Loading from "../components/loading"
+
 const Seemore =()=>{
     const{name}=useParams()
     const[countrydata,setCountrydata]=useState([])
-    const[countryname,setCountryname]=useState(null)
+    const[flag,setFlag]=useState("")
     const[error,setError]=useState(false)
+    const[loading,setLoading]=useState(true)
     const handleSearchCountry = async ()=>{
-        const url= `https://restcountries.eu/rest/v2/name/${name}?fullText=true`
+        const url= `https://restcountries.com/v2/name/${name}?fullText=true`
         
 
         const response = await fetch(url)
@@ -20,7 +23,9 @@ const Seemore =()=>{
         if(result.response=== 404){
             setError(true)
         }else{
+            
             setCountrydata(result[0])
+            setFlag(result[0].flags[0])
         }
         //console.log(countrydata)
         try{
@@ -33,11 +38,23 @@ const Seemore =()=>{
         console.log(countrydata)
     }
 
+    const loadingstatus=()=>{
+        setTimeout(()=>{
+            setLoading(false);
+        }, 350);
+    }
+
     useEffect(()=>{
         handleSearchCountry();
+        loadingstatus();
     },[])
+    
 
-
+    if(loading){
+        return(
+            <Loading/>
+        )
+    }else{
     return(
         <div className="country">
         
@@ -45,9 +62,9 @@ const Seemore =()=>{
         <Cardtree
         capital={countrydata.capital}
         name={countrydata.name}
-        flag={countrydata.flag}
+        flag={flag}
         population={countrydata.population}
-        region={countrydata.subregion}
+        region={countrydata.region}
         />
 
         <Link to={`/Weather/${countrydata.name}`}><button className="boton2">weather</button></Link>
@@ -55,5 +72,5 @@ const Seemore =()=>{
         </div>
     )
 }
-
+}
 export default Seemore

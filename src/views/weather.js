@@ -3,7 +3,7 @@ import Header from '../components/header';
 import "../components/styles/weather.css"
 import Cardfour from "../components/cardfour"
 import { Link,useParams } from 'react-router-dom';
-
+import Loading from "../components/loading"
 
 const api = {
   key: "98a8a391dfb554c32f9bbd2ab8769e32",
@@ -13,13 +13,12 @@ const api = {
 function Weather() {
   const{name}=useParams()
     const[countrydata,setCountrydata]=useState([])
-    const[countryname,setCountryname]=useState(null)
+    const[flag,setFlag]=useState("")
     const[error,setError]=useState(false)
-    const [query, setQuery] = useState('');
     const [weather, setWeather] = useState({});
-
+    const[loading,setLoading]=useState(true)
     const handleSearchCountry = async ()=>{
-        const url= `https://restcountries.eu/rest/v2/name/${name}?fullText=true`
+        const url= `https://restcountries.com/v2/name/${name}?fullText=true`
        
   
         const response = await fetch(url)
@@ -37,6 +36,7 @@ function Weather() {
         }else{
             setCountrydata(result[0])
             console.log(countrydata)
+            setFlag(result[0].flags[0])
         }
         //console.log(countrydata)
         try{
@@ -48,21 +48,23 @@ function Weather() {
         
         console.log(countrydata)
     }
-  
+
+    const loadingstatus=()=>{
+      setTimeout(()=>{
+          setLoading(false);
+      }, 350);
+  }
+
     useEffect(()=>{
       handleSearchCountry();
+      loadingstatus();
   },[])
 
- 
-    
-  
-
- 
-
-
-
-
-
+  if(loading){
+    return(
+        <Loading/>
+    )
+}else{
   return (
 
       <div className={(typeof weather.main != "undefined") ? ((weather.clouds.all > 14 ) ? 'app warm' : 'app') : 'app'}>
@@ -90,7 +92,7 @@ function Weather() {
                 
                 <Cardfour
                      
-                     flag={countrydata.flag}
+                     flag={flag}
                         />  
                 <div className="weather-box">
                     
@@ -114,6 +116,7 @@ function Weather() {
         </main>
       </div>
   );
+}
 }
 
 export default Weather;
