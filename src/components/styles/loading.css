@@ -5,3 +5,12 @@
     height: 40%;
     font-size: 400%;
 }
+
+@media (max-width: 575px){
+
+.loading{
+    font-size: 200%;
+}
+}
+
+
