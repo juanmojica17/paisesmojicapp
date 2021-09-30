@@ -29,7 +29,7 @@ const Country =()=>{
         }else{
             setError(false)
             setCountrydata(result[0])
-            setFlag(result[0].flags[0])
+            setFlag(result[0].flag)
         }
         //console.log(error)
         try{

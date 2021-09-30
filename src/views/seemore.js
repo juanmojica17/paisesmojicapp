@@ -25,7 +25,7 @@ const Seemore =()=>{
         }else{
             
             setCountrydata(result[0])
-            setFlag(result[0].flags[0])
+            setFlag(result[0].flag)
         }
         //console.log(countrydata)
         try{

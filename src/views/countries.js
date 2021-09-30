@@ -56,7 +56,7 @@ const Countries =()=>{
             {data.map(data=>(
                 <Card
                 name={data.name}
-                flag={data.flags[0]}
+                flag={data.flag}
                 key={data.id}
                 />
                 
